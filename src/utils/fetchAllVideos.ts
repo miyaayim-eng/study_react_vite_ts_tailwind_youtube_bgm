@@ -1,6 +1,6 @@
 import { fetchVideosFromYoutube } from "../api/fetchVideosFromYoutube";
 import { pageInfo, videoConfig } from "../config/siteInfo";
-import { YoutubeAllVideosType, YoutubeVideoType } from "../types/youtubeType";
+import { YoutubeAllVideosType } from "../types/youtubeType";
 import { excludeVideosByKeywords } from "./excludeVideosByKeywords";
 
 // テスト用ローカルデータ

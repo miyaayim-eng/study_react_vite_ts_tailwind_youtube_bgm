@@ -1,4 +1,4 @@
-import { FC, memo, useEffect, useState } from "react";
+import { FC, memo } from "react";
 import { pageInfo } from "../../config/siteInfo";
 
 type Props = {
