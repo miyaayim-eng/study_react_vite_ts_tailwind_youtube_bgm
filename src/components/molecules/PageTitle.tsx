@@ -21,15 +21,21 @@ export const PageTitle: FC<Props> = memo((props) => {
   return (
     <div className="text-center">
       {pageNameEnglish === pageInfo[0].pageNameEnglish ? (
-        <h1 className="font-roboto font-bold text-5xl">{pageNameJapanese}</h1>
+        <h1 className="font-roboto font-bold text-4xl md:text-5xl">
+          {pageNameJapanese}
+        </h1>
       ) : (
-        <p className="font-roboto font-bold text-5xl">{pageNameEnglish}</p>
+        <p className="font-roboto font-bold text-4xl md:text-5xl">
+          {pageNameEnglish}
+        </p>
       )}
       {pageNameEnglish !== pageInfo[0].pageNameEnglish && (
-        <h1 className="font-bold text-xl mt-3">{pageNameJapanese}</h1>
+        <h1 className="font-bold text-lg md:text-xl mt-3">
+          {pageNameJapanese}
+        </h1>
       )}
       <div className="flex mt-4 justify-center">
-        <div className="w-16 h-[4px] rounded-full bg-red-700"></div>
+        <div className="w-12 md:w-16 h-[2px] md:h-[4px] rounded-full bg-red-700"></div>
       </div>
     </div>
   );

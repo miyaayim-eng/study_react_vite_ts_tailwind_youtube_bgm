@@ -7,14 +7,14 @@ type Props = {
 
 export const MenuButton: FC<Props> = memo((props) => {
   const { isOpen, setIsOpen } = props;
-  const [openClass, setOpenClass] = useState<string>("");
   const activeStyle = "bg-neutral-700";
+  const [activeClass, setActiveClass] = useState<string>("");
 
   useEffect(() => {
     if (isOpen) {
-      setOpenClass("bg-neutral-700");
+      setActiveClass(activeStyle);
     } else {
-      setOpenClass("");
+      setActiveClass("");
     }
   }, [isOpen]);
 
@@ -22,11 +22,28 @@ export const MenuButton: FC<Props> = memo((props) => {
     setIsOpen(!isOpen);
   };
 
+  // 画面横幅が変更されたときのイベントリスナー設定
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(min-width: 768px)");
+
+    const handleMediaQueryChange = () => {
+      setIsOpen(false);
+    };
+
+    // イベントリスナーの登録
+    mediaQuery.addEventListener("change", handleMediaQueryChange);
+
+    // クリーンアップ関数
+    return () => {
+      mediaQuery.removeEventListener("change", handleMediaQueryChange);
+    };
+  }, []);
+
   return (
     <p className="md:hidden grid place-content-center">
       <button
         onClick={handleClick}
-        className={`${openClass} w-10 h-10 rounded-[50%] grid gap-y-[6px] place-content-center transition-all hover:${activeStyle}`}
+        className={`${activeClass} w-10 h-10 rounded-[50%] grid gap-y-[6px] place-content-center transition-all hover:${activeStyle}`}
       >
         <span className="h-[1px] w-[20px] bg-white select-none"></span>
         <span className="h-[1px] w-[20px] bg-white select-none"></span>

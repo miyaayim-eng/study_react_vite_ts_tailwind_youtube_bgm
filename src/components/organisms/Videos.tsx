@@ -33,23 +33,25 @@ export const Videos: FC<Props> = memo((props) => {
   // }, [searchKeyword]);
 
   return (
-    <div className="mt-16">
+    <div className="mt-8 md:mt-16">
       {isLoading ? (
-        <p className="text-center font-bold text-3xl">動画データ取得中</p>
+        <p className="text-center font-bold text-xl md:text-3xl">
+          動画データ取得中
+        </p>
       ) : isFetchError ? (
         <>
-          <p className="text-center font-bold text-3xl">
+          <p className="text-center font-bold text-xl md:text-3xl">
             YouTubeからのデータ取得に失敗しました。
           </p>
-          <p className="text-xl mt-14 text-neutral-400 w-fit mx-auto md:text-center">
+          <p className="md:text-xl mt-8 md:mt-14 text-neutral-400 w-fit mx-auto md:text-center">
             YouTube Data APIの使用上限に達した可能性があります。
             <br />
             日を改めて再度お試しいただくか、下のボタンからローカルデータを取得し閲覧ください。
           </p>
-          <p className="mt-16">
+          <p className="mt-8 md:mt-16">
             <button
               onClick={getLocalData}
-              className="block bg-neutral-700 rounded-full text-lg md:text-xl px-8 md:px-12 py-3 md:py-4 w-fit mx-auto hover:bg-neutral-600 transition-all"
+              className="block bg-neutral-700 rounded-full md:text-xl px-8 md:px-12 py-3 md:py-4 w-fit mx-auto hover:bg-neutral-600 transition-all"
             >
               ローカルデータで閲覧する
             </button>

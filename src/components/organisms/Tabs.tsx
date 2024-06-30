@@ -15,7 +15,7 @@ export const Tabs: FC<Props> = memo((props) => {
   const { keywords, searchKeyword, setSearchKeyword } = props;
 
   return (
-    <ul className="flex gap-8 w-fit mx-auto">
+    <ul className="flex flex-wrap justify-center gap-6 md:gap-8 w-fit mx-auto">
       {keywords.map((keyword) => (
         <Tab
           key={keyword}

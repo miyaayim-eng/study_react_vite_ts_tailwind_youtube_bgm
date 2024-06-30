@@ -11,16 +11,16 @@ type Props = {
 
 export const GlobalNav: FC<Props> = memo((props) => {
   const { pagePath, isOpen, setIsOpen } = props;
-
-  const [closeClass, setCloseClass] = useState<string>("");
-  const closeStyle = "translate-x-full";
+  const openStyle = "translate-x-0";
+  const closeStyle = "max-md:translate-x-full";
+  const [toggleClass, setToggleClass] = useState<string>(closeStyle);
 
   // 開けるときは「閉スタイル」を削除、閉めるときは「閉スタイル」を付与
   useEffect(() => {
     if (isOpen) {
-      setCloseClass("");
+      setToggleClass(openStyle);
     } else {
-      setCloseClass(closeStyle);
+      setToggleClass(closeStyle);
     }
   }, [isOpen]);
 
@@ -30,17 +30,17 @@ export const GlobalNav: FC<Props> = memo((props) => {
 
     const handleMediaQueryChange = (e: MediaQueryListEvent) => {
       if (e.matches) {
-        setCloseClass("");
+        setToggleClass(openStyle);
       } else {
-        setCloseClass(closeStyle);
+        setToggleClass(closeStyle);
       }
     };
 
     // 初回チェック
     if (mediaQuery.matches) {
-      setCloseClass("");
+      setToggleClass(openStyle);
     } else {
-      setCloseClass(closeStyle);
+      setToggleClass(closeStyle);
     }
 
     // イベントリスナーの登録
@@ -60,7 +60,7 @@ export const GlobalNav: FC<Props> = memo((props) => {
 
   return (
     <nav
-      className={`${closeClass} max-md:transition-transform max-md:duration-500 max-md:ease-in-out max-md:absolute max-md:top-full max-md:left-0 max-md:right-0 max-md:border-t-2 max-md:border-neutral-700 max-md:bg-neutral-800 max-md:h-[calc(100dvh-theme(spacing.16))] max-md:overflow-y-scroll overscroll-contain`}
+      className={`${toggleClass} max-md:transition-transform max-md:duration-500 max-md:ease-in-out max-md:absolute max-md:top-full max-md:left-0 max-md:right-0 max-md:border-t-2 max-md:border-neutral-700 max-md:bg-neutral-800 max-md:h-[calc(100dvh-theme(spacing.16))] max-md:overflow-y-scroll overscroll-contain`}
     >
       <ul className="max-md:flex-col max-md:py-8 max-md:px-8 flex gap-x-3 md:h-full max-md:min-h-[calc(100%+1px)]">
         {pageInfo.map((page) => {
