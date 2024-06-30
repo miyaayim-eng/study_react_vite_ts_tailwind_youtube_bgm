@@ -1,0 +1,51 @@
+@font-face {
+  font-family: "Noto Sans JP";
+  src: url("./assets/fonts/Noto_Sans_JP/NotoSansJP-VariableFont_wght.ttf")
+    format("truetype");
+  font-optical-sizing: auto;
+  font-weight: 100 1000;
+  font-stretch: 25% 151%;
+}
+
+@font-face {
+  font-family: "Roboto";
+  src: url("./assets/fonts/Roboto_Flex/RobotoFlex-VariableFont_GRAD,XTRA,YOPQ,YTAS,YTDE,YTFI,YTLC,YTUC,opsz,slnt,wdth,wght.ttf")
+    format("truetype-variations");
+  font-weight: 100 1000;
+  font-stretch: 25% 151%;
+}
+
+/* リセットCSS的な存在。デフォルトのスタイル調整 */
+@tailwind base;
+/* クラスベースのスタイル用 */
+@tailwind components;
+/* 最優先されるユーティリティクラス */
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: dark;
+
+    --font_noto: "Noto Sans JP", Arial, sans-serif;
+    --font_roboto: "Roboto", Arial, sans-serif;
+  }
+  html {
+    overflow-y: scroll;
+    scrollbar-color: hsl(0, 0%, 67%) #171717;
+  }
+  html::-webkit-scrollbar-track {
+    background-color: rgb(23 23 23 / var(--tw-bg-opacity));
+  }
+  html::-webkit-scrollbar-thumb {
+    background-color: hsl(0, 0%, 67%);
+  }
+}
+
+@layer utilities {
+  .font-noto {
+    font-family: var(--font_noto);
+  }
+  .font-roboto {
+    font-family: var(--font_roboto);
+  }
+}
