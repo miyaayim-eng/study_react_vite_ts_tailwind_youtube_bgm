@@ -1,16 +1,16 @@
-import { FC, memo, useEffect, useState } from "react";
+import { FC, memo, useEffect, useState, useContext } from "react";
 
 import { Tabs } from "./Tabs";
 import { Cards } from "./Cards";
 import { useYoutubeData } from "../../hooks/useYoutubeData";
-import { YoutubeKeywordsType } from "../../types/youtubeType";
+import { PageInfoContext } from "../../providers/PageInfoProvider";
+import { PageInfoType } from "../../config/siteInfo";
 
-type Props = {
-  keywords: YoutubeKeywordsType;
-};
-
-export const Videos: FC<Props> = memo((props) => {
-  const { keywords } = props;
+export const Videos: FC = memo(() => {
+  const { page } = useContext<{ page: PageInfoType | null }>(PageInfoContext);
+  // pageがnullでないことを確認する
+  if (!page) return null;
+  const { keywords } = page;
 
   const defaultKeyword = keywords.length > 0 ? keywords[0] : "";
   const [searchKeyword, setSearchKeyword] = useState<string>(defaultKeyword);

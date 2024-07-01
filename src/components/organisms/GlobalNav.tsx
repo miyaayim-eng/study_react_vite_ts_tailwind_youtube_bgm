@@ -1,16 +1,20 @@
-import { FC, memo, useEffect, useState } from "react";
+import { FC, memo, useEffect, useState, useContext } from "react";
 import { Link } from "react-router-dom";
 
+import { PageInfoContext } from "../../providers/PageInfoProvider";
 import { pageInfo } from "../../config/siteInfo";
 
 type Props = {
-  pagePath: string;
   isOpen: boolean;
   setIsOpen: (isOpen: boolean) => void;
 };
 
 export const GlobalNav: FC<Props> = memo((props) => {
-  const { pagePath, isOpen, setIsOpen } = props;
+  const { isOpen, setIsOpen } = props;
+  const { page } = useContext(PageInfoContext);
+  if (!page) return null;
+  const { pagePath } = page;
+
   const openStyle = "translate-x-0";
   const closeStyle = "max-md:translate-x-full";
   const [toggleClass, setToggleClass] = useState<string>(closeStyle);

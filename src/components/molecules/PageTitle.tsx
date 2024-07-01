@@ -1,13 +1,12 @@
-import { FC, memo } from "react";
+import { FC, memo, useContext } from "react";
 import { pageInfo } from "../../config/siteInfo";
+import { PageInfoContext } from "../../providers/PageInfoProvider";
 
-type Props = {
-  pageNameJapanese: string;
-  pageNameEnglish: string;
-};
-
-export const PageTitle: FC<Props> = memo((props) => {
-  const { pageNameJapanese, pageNameEnglish } = props;
+export const PageTitle: FC = memo(() => {
+  const { page } = useContext(PageInfoContext);
+  // pageがnullでないことを確認する
+  if (!page) return null;
+  const { pageNameJapanese, pageNameEnglish } = page;
   // const [topTitleClass, setTopTitleClass] = useState<string>("");
 
   // useEffect(() => {

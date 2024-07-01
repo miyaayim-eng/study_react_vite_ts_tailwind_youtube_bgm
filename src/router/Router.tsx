@@ -1,8 +1,9 @@
 import { memo, FC } from "react";
 import { Route, Routes } from "react-router-dom";
-import { Basic } from "../components/pages/Baseic";
+import { Basic } from "../components/pages/Basic";
 import { Page404 } from "../components/pages/Page404";
 import { pageInfo, PageInfoType } from "../config/siteInfo";
+import { PageInfoProvider } from "../providers/PageInfoProvider";
 
 export const Router: FC = memo(() => {
   return (
@@ -13,12 +14,9 @@ export const Router: FC = memo(() => {
             key={page.pagePath}
             path={page.pagePath}
             element={
-              <BasicWrapper
-                pageNameJapanese={page.pageNameJapanese}
-                pageNameEnglish={page.pageNameEnglish}
-                pagePath={page.pagePath}
-                keywords={page.keywords}
-              />
+              <PageInfoProvider page={page}>
+                <Basic />
+              </PageInfoProvider>
             }
           />
         ))}
@@ -27,19 +25,3 @@ export const Router: FC = memo(() => {
     </div>
   );
 });
-
-const BasicWrapper: FC<PageInfoType> = ({
-  pageNameJapanese,
-  pageNameEnglish,
-  pagePath,
-  keywords,
-}) => {
-  return (
-    <Basic
-      pageNameJapanese={pageNameJapanese}
-      pageNameEnglish={pageNameEnglish}
-      pagePath={pagePath}
-      keywords={keywords}
-    />
-  );
-};
