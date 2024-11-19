@@ -54,5 +54,6 @@ export const videoConfig = {
     "添い寝",
     "寝息",
     "耳かき",
+    "ASMR",
   ] as const,
 };
